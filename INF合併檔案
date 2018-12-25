@@ -3,7 +3,7 @@ library(lubridate)
 library(dplyr)
 library(stringr)
 
-dat <- read_excel("C:/Users/janecheng/Downloads/Nestle_Daily_Online_Monitoring_Report_2018-09-01.xlsx")
+dat <- read_excel("C:/Users/janecheng/Downloads/Report_2018-09-01.xlsx")
 dat2 <- dat[,-c(1:2,14)]
 dat2 <- cbind(dat2[,1:4],dat$原始連結,dat2[,5:ncol(dat2)]) #插入原始連結
 colnames(dat2)[5]=c("原始連結")
