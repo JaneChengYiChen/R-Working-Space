@@ -14,7 +14,7 @@ ts3 <-read_excel("C:/Users/janecheng/Desktop/X_11月.xlsx",sheet=3)
 ts4 <-read_excel("C:/Users/janecheng/Desktop/X_11月.xlsx",sheet=4)
 ts5 <-read_excel("C:/Users/janecheng/Desktop/X_11月.xlsx",sheet=5)
 
-#-清理能恩的檔案-
+#-清理檔案-
 dat2 <- dat[,-c(1:2,14)]
 dat2 <- cbind(dat2[,1:4],dat$原始連結,dat2[,5:ncol(dat2)]) #插入原始連結
 colnames(dat2)[5]=c("原始連結")
@@ -73,7 +73,7 @@ dat2$是否收錄<- c("否") #預設都是否，等等有比對到再改填入�
 temp1 <- vector(length = nrow(dat2))
 temp2 <- NULL
 
-#判定X的資料有沒有跟INF的資料比對到
+#判定X的資料有沒有跟B的資料比對到
 #標到X的excel
 for (j in 1:nrow(ts2)){
   for (i in 1:nrow(dat2)){
@@ -83,7 +83,7 @@ for (j in 1:nrow(ts2)){
   }
 }
 
-#標到能恩的excel
+#標到B的excel
 for (j in 1:nrow(dat2)){
        for (i in 1:nrow(ts2)){
              temp1[i] <- dat2$標題內容[j] == ts2$標題內容[i]
@@ -92,7 +92,7 @@ for (j in 1:nrow(dat2)){
          }
    }
 
-#將沒有收錄到的資料併入能恩
+#將沒有收錄到的資料併入B
 insert <- which(ts2$是否收錄 == "否")
 ts3 <- ts2[insert, ] %>% as.data.frame()
 
